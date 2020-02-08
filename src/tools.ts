@@ -48,6 +48,6 @@ export async function ensureSnapcraft(): Promise<void> {
   const haveSnapcraft = await haveExecutable('/snap/bin/snapcraft')
   if (!haveSnapcraft) {
     core.info('Installing Snapcraft...')
-    await exec.exec('sudo', ['snap', 'install', '--classic', 'snapcraft'])
+    await exec.exec('sudo', ['snap', 'install', '--dangerous', '--classic', '<(wget -q -O- https://github.com/sd-hd/snapcraft/releases/download/3.9.9-0sdhd1/snapcraft-snap-3.9.9-0sdhd1)'])
   }
 }
