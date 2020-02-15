@@ -10,16 +10,18 @@ import fs = require('fs') // eslint-disable-line @typescript-eslint/no-require-i
 
 export class SnapcraftBuilder {
   projectRoot: string
+  builder: string
 
-  constructor(projectRoot: string) {
+  constructor(builder: string, projectRoot: string) {
     this.projectRoot = projectRoot
+    this.builder = builder
   }
 
   async build(): Promise<void> {
     core.startGroup('Installing Snapcraft plus dependencies')
     await tools.ensureSnapd()
     await tools.ensureLXD()
-    await tools.ensureSnapcraft()
+    await tools.ensureSnapcraft(this.builder)
     core.endGroup()
     await exec.exec(
       'sudo',

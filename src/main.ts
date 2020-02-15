@@ -8,7 +8,10 @@ async function run(): Promise<void> {
     const path = core.getInput('path')
     core.info(`Building Snapcraft project in "${path}"...`)
 
-    const builder = new SnapcraftBuilder(path)
+    const snapcraft = core.getInput('builder')
+    core.info(`Building with snapcraft from "${snapcraft}"`)
+
+    const builder = new SnapcraftBuilder(snapcraft, path)
     await builder.build()
     const snap = await builder.outputSnap()
     core.setOutput('snap', snap)

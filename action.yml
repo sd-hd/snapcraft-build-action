@@ -8,6 +8,9 @@ inputs:
   path:
     description: 'The location of the Snapcraft project.  Defaults to the base of the repository'
     default: '.'
+  builder:
+    description: 'The location of the Snapcraft repository. Defaults to the mainline repository.'
+    default: 'snapcore/snapcraft'
 outputs:
   snap:
     description: 'The file name of the resulting snap.'
